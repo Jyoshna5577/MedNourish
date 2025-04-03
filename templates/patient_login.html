@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Patient Login</h1>
+        <form action="{{ url_for('patient_login') }}" method="POST">
+            <input type="text" name="patient_id" placeholder="Enter Patient ID" required>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <br>
+        <p>Don't have an account? <a href="{{ url_for('patient_signup') }}"class="btn btn-danger">Sign up here</a></p>
+        
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</body>
+</html>

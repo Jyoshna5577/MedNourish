@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Patient Diet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Patient Diet</h1>
+
+        <form id="dietForm" action="{{ url_for('predict') }}" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="number" name="age" placeholder="Age" required>
+            <input type="text" name="gender" placeholder="Gender" required>
+            <input type="text" name="blood_group" placeholder="Blood Group" required>
+            <input type="text" name="food_type" placeholder="Food Type" required>
+            <input type="text" name="previous_diseases" placeholder="Previous Diseases">
+            <input type="text" name="current_diseases" placeholder="Current Diseases">
+            <button type="submit">Predict Diet</button>
+        </form>
+
+        <p id="result"></p>
+        <br>
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

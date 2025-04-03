@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Staff Signup</h1>
+        
+        <!-- Show success or error message -->
+        {% if message %}
+            <p style="color: {% if 'successful' in message %}green{% else %}red{% endif %};">{{ message }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('staff_signup') }}" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="text" name="role" placeholder="Role (e.g., Nutritionist, Doctor)" required>
+            <textarea name="experience" rows="4" placeholder="Experience (optional)"></textarea>
+            <button type="submit" class="btn btn-primary">Signup</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('staff_login') }}" class="btn">Login</a></p>
+        <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

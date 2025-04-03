@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Patient Signup</h1>
+        
+        <!-- Show success or error message -->
+        {% if message %}
+            <p style="color: {% if 'successful' in message %}green{% else %}red{% endif %};">{{ message }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('patient_signup') }}" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="number" name="age" placeholder="Age" required>
+            <select name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <textarea name="medical_history" rows="4" placeholder="Medical History (optional)"></textarea>
+            <button type="submit" class="btn btn-primary">Signup</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('patient_login') }}" class="btn">Login</a></p>
+        <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

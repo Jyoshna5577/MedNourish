@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Patient Dashboard</h1>
+        <h3>Your Diet Details</h3>
+        {% if patient %}
+        <div class="table-container">
+            <table class="styled-table">
+                <tr><th>Patient ID</th><td>{{ patient[0] }}</td></tr>
+                <tr><th>Name</th><td>{{ patient[1] }}</td></tr>
+                <tr><th>Age</th><td>{{ patient[2] }}</td></tr>
+                <tr><th>Gender</th><td>{{ patient[3] }}</td></tr>
+                <tr><th>Blood Group</th><td>{{ patient[4] }}</td></tr>
+                <tr><th>Food Type</th><td>{{ patient[5] }}</td></tr>
+                <tr><th>Previous Diseases</th><td>{{ patient[6] }}</td></tr>
+                <tr><th>Current Diseases</th><td>{{ patient[7] }}</td></tr>
+                <tr><th>Predicted Diet</th><td>{{ patient[8] }}</td></tr>
+            </table>
+        </div>
+
+        <h3>Weekly Meal Plan</h3>
+        <div class="table-container">
+            {% if meal_plan %}
+            <table class="styled-table">
+                <tr>
+                    <th>Day</th>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Snack</th>
+                    <th>Dinner</th>
+                </tr>
+                {% for day, meals in meal_plan.items() %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>{{ meals.get('Breakfast', 'N/A') }}</td>
+                    <td>{{ meals.get('Lunch', 'N/A') }}</td>
+                    <td>{{ meals.get('Snack', 'N/A') }}</td>
+                    <td>{{ meals.get('Dinner', 'N/A') }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p class="error">⚠️ No meal plan found.</p>
+            {% endif %}
+        </div>
+
+        <h3>Submit Feedback</h3>
+        <form method="POST" action="{{ url_for('submit_feedback') }}">
+            <input type="hidden" name="patient_id" value="{{ patient[0] }}">
+            <textarea name="feedback" rows="4" placeholder="Write your feedback here..." required></textarea>
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+        {% else %}
+        <p class="error">⚠️ No patient details found.</p>
+        {% endif %}
+
+        <a href="{{ url_for('home') }}" class="btn btn-secondary ">Back to Home</a>
+    </div>
+</body>
+</html>

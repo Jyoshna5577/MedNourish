@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Staff Dashboard</h1>
+        <div class="button-container">
+            <a href="{{ url_for('check_patient_details') }}" class="btn btn-primary">Check Patient Details</a>
+            <a href="{{ url_for('view_feedback') }}" class="btn btn-secondary">View Feedback</a> <!-- New Button -->
+            <a href="{{ url_for('home') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

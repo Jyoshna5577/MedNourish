@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback from Patients</h1>
+        
+        {% if feedback_list %}
+            <table class="styled-table">
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Feedback</th>
+                </tr>
+                {% for feedback in feedback_list %}
+                <tr>
+                    <td>{{ feedback[0] }}</td>
+                    <td>{{ feedback[1] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No feedback available.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</body>
+</html>
